@@ -1,10 +1,13 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -22,6 +25,7 @@ public class TimelineActivity extends AppCompatActivity {
     TweetAdapter tweetAdapter;
     ArrayList<Tweet> tweets;
     RecyclerView rvTweets;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,21 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         //  set the adapter
         rvTweets.setAdapter(tweetAdapter);
+
+        fab = findViewById(R.id.fab);
+
         populateTimeline();
     }
+
+
+    public void startComposeActivity(View v){
+        Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+        Log.i("StartComposeActivity", "declared intent");
+        // should i put in extras?
+        startActivityForResult(i, 20);
+        Log.i("StartComposeActivity", "Tried to start activity");
+    }
+
 
     private void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
@@ -91,5 +108,23 @@ public class TimelineActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // check request code and result code first
+        if(requestCode == 20){
+            if(resultCode == RESULT_OK){
+                Tweet resultTweet = (Tweet) data.getSerializableExtra("tweet");
+                tweets.add(0, resultTweet);
+
+                //  notifies the adapter of change
+                tweetAdapter.notifyItemInserted(0);
+                //  scrolls list of tweets back to top
+                rvTweets.scrollToPosition(0);
+            }
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
