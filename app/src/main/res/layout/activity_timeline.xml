@@ -34,7 +34,7 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:onClick="startComposeActivity"
-        app:backgroundTint="#1da1f2"
+        app:backgroundTint="@color/twitter_blue"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_vector_compose" />
 
