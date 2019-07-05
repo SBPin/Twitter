@@ -13,10 +13,10 @@ The following **required** functionality is completed:
 * [x] User is displayed the username, name, and body for each tweet
 * [x] User is displayed the [relative timestamp](https://gist.github.com/nesquena/f786232f5ef72f6e10a7) for each tweet "8m", "7h"
 * [x] User can **compose and post a new tweet**
-  * [x] User can click a “Compose” icon in the Action Bar on the top right
-  * [x] User can then enter a new tweet and post this to twitter
-  * [x] User is taken back to home timeline with **new tweet visible** in timeline
-  * [x] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
+* [x] User can click a “Compose” icon in the Action Bar on the top right
+* [x] User can then enter a new tweet and post this to twitter
+* [x] User is taken back to home timeline with **new tweet visible** in timeline
+* [x] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
 
 The following **stretch** features are implemented:
 
@@ -25,9 +25,9 @@ The following **stretch** features are implemented:
 * [x] User is using **"Twitter branded" colors and styles**
 * [ ] User sees an **indeterminate progress indicator** when any background or network task is happening
 * [ ] User can **select "reply" from detail view to respond to a tweet**
-  * [ ] User that wrote the original tweet is **automatically "@" replied in compose**
+* [ ] User that wrote the original tweet is **automatically "@" replied in compose**
 * [ ] User can tap a tweet to **open a detailed tweet view**
-  * [ ] User can **take favorite (and unfavorite) or reweet** actions on a tweet
+* [ ] User can **take favorite (and unfavorite) or reweet** actions on a tweet
 * [ ] User can **see embedded image media within a tweet** on list or detail view.
 
 The following **bonus** features are implemented:
@@ -59,6 +59,10 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+I initially had many difficulties with layouts and XML. However, as this project required many different TextViews, buttons, images, etc., I leanred much more about properly constructing layouts.
+
+I also struggled with retrieving other parts of the Tweet via JSON. However, after reading Twitter's documentation regarding the Tweet object, I was able to learn more about retrieving values from JSON, and figured out on my own how to retrieve values for the number of Retweets and Favorites.
+
 
 ## Open-source libraries used
 
