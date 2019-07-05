@@ -14,6 +14,7 @@ import com.wafflecopter.charcounttextview.CharCountTextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -62,7 +63,8 @@ public class ComposeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Intent sendResult = new Intent();
-                sendResult.putExtra("tweet", tweet);
+                //  sendResult.putExtra("tweet", tweet);    // no longer serializable
+                sendResult.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
                 setResult(RESULT_OK, sendResult);
                 finish();
             }

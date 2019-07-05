@@ -35,7 +35,7 @@ The following **bonus** features are implemented:
 * [ ] User can view more tweets as they scroll with infinite pagination
 * [ ] Compose tweet functionality is build using modal overlay
 * [x] User can **click a link within a tweet body** on tweet details view. The click will launch the web browser with relevant page opened.
-* [ ] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.org/android/Using-Parceler).
+* [x] Use Parcelable instead of Serializable using the popular [Parceler library](http://guides.codepath.org/android/Using-Parceler).
 * [ ] Replace all icon drawables and other static image assets with [vector drawables](http://guides.codepath.org/android/Drawables#vector-drawables) where appropriate.
 * [ ] User can view following / followers list through any profile they view.
 * [ ] Use the popular ButterKnife annotation library to reduce view boilerplate.
@@ -47,7 +47,7 @@ The following **additional** features are implemented:
 * [x] Tweets display number of favorites and retweets (with Twitter icons)
 * [x] Replaced some icon drawables and other static image assets with [vector drawables]
 * [x] Added a Floating Action Button to compose a new Tweet instead of using Action Bar/Menu
-* [ ] List anything else that you can get done to improve the app functionality!
+
 
 ## Video Walkthrough
 
@@ -68,7 +68,7 @@ I also struggled with retrieving other parts of the Tweet via JSON. However, aft
 
 Also, after returning to work on July 5th, I had some difficulty remembering where I was in the project, and my code was not compiling. However, as I've learned to commit to GIT more frequently, I was able to clone the most recent, running version. This experience was initially frustrating, but helped teach me the value of frequent commits.
 
-Lastly, I had trouble inserting and using the Floating Action Button. We were instructed to use an Action Bar/Menu for users to compose a new Tweet, but I decided to use a FAB instead, as we has used Action Bars before, and I wanted to try something new. This was initially difficult, as my peers were not implementing the same feature, and I had to read and understand the documentation on my own. This ended up being worthwile, as with the help of the TAs and some time spent on StackOverflow, I was able to implement the feature and learn on my own.
+Lastly, I had trouble inserting and using the Floating Action Button. We were instructed to use an Action Bar/Menu for users to compose a new Tweet, but I decided to use a FAB instead, as we has used Action Bars before, and I wanted to try something new. This was initially difficult, as my peers were not implementing the same feature, and I had to read and understand the documentation on my own. This ended up being worthwile, as with the help of the TAs and some time spent on StackOverflow, I was able to implement the feature and learn on my own. As I used a FAB, many of the Stretch/Bonus features involving Tool Bar/ Action Bar were not applicable.
 
 ## Open-source libraries used
 

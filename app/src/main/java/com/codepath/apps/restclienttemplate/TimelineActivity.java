@@ -17,6 +17,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -74,7 +75,6 @@ public class TimelineActivity extends AppCompatActivity {
         populateTimeline();
     }
 
-
     public void startComposeActivity(View v){
         Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
         Log.i("StartComposeActivity", "declared intent");
@@ -82,7 +82,6 @@ public class TimelineActivity extends AppCompatActivity {
         startActivityForResult(i, 20);
         Log.i("StartComposeActivity", "Tried to start activity");
     }
-
 
     private void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
@@ -111,13 +110,11 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.d("TwitterClient", response.toString());
             }
 
-
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.d("TwitterClient", responseString);
                 throwable.printStackTrace();
             }
-
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
@@ -140,7 +137,9 @@ public class TimelineActivity extends AppCompatActivity {
         // check request code and result code first
         if(requestCode == 20){
             if(resultCode == RESULT_OK){
-                Tweet resultTweet = (Tweet) data.getSerializableExtra("tweet");
+                //  Tweet resultTweet = (Tweet) data.getSerializableExtra("tweet");
+                //  Changed serializable to parcelable
+                Tweet resultTweet = Parcels.unwrap(getIntent().getParcelableExtra(Tweet.class.getSimpleName()));
                 tweets.add(0, resultTweet);
 
                 //  notifies the adapter of change
