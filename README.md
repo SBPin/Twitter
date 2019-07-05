@@ -45,7 +45,8 @@ The following **bonus** features are implemented:
 
 The following **additional** features are implemented:
 * [x] Tweets display number of favorites and retweets (with Twitter icons)
-
+* [x] Replaced some icon drawables and other static image assets with [vector drawables]
+* [x] Added a Floating Action Button to compose a new Tweet instead of using Action Bar/Menu
 * [ ] List anything else that you can get done to improve the app functionality!
 
 ## Video Walkthrough
@@ -59,10 +60,13 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+
 I initially had many difficulties with layouts and XML. However, as this project required many different TextViews, buttons, images, etc., I leanred much more about properly constructing layouts.
 
 I also struggled with retrieving other parts of the Tweet via JSON. However, after reading Twitter's documentation regarding the Tweet object, I was able to learn more about retrieving values from JSON, and figured out on my own how to retrieve values for the number of Retweets and Favorites.
 
+Lastly, I had trouble inserting and using the Floating Action Button. We were instructed to use an Action Bar/Menu for users to compose a new Tweet, but I decided to use a FAB instead, as we has used Action Bars before, and I wanted to try something new. This was initially difficult, as my peers were not implementing the same feature, and I had to read and understand the documentation on my own. This ended up being worthwile, as with the help of the TAs and some time spent on StackOverflow, I was able to implement the feature and learn on my own.
 
 ## Open-source libraries used
 
