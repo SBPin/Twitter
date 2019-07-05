@@ -66,6 +66,8 @@ I initially had many difficulties with layouts and XML. However, as this project
 
 I also struggled with retrieving other parts of the Tweet via JSON. However, after reading Twitter's documentation regarding the Tweet object, I was able to learn more about retrieving values from JSON, and figured out on my own how to retrieve values for the number of Retweets and Favorites.
 
+Also, after returning to work on July 5th, I had some difficulty remembering where I was in the project, and my code was not compiling. However, as I've learned to commit to GIT more frequently, I was able to clone the most recent, running version. This experience was initially frustrating, but helped teach me the value of frequent commits.
+
 Lastly, I had trouble inserting and using the Floating Action Button. We were instructed to use an Action Bar/Menu for users to compose a new Tweet, but I decided to use a FAB instead, as we has used Action Bars before, and I wanted to try something new. This was initially difficult, as my peers were not implementing the same feature, and I had to read and understand the documentation on my own. This ended up being worthwile, as with the help of the TAs and some time spent on StackOverflow, I was able to implement the feature and learn on my own.
 
 ## Open-source libraries used
@@ -75,7 +77,7 @@ Lastly, I had trouble inserting and using the Floating Action Button. We were in
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2019] [Sabrina Pin]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
