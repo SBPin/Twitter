@@ -19,6 +19,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     private List<Tweet> mTweets;
     Context context;
+
     //  pass in Tweets array to constructor
     public TweetAdapter(List<Tweet> tweets){
         mTweets = tweets;
@@ -33,6 +34,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
         View tweetView = inflater.inflate(R.layout.item_tweet, parent, false);
         ViewHolder viewHolder = new ViewHolder(tweetView);
+
         return viewHolder;
     }
 
@@ -45,6 +47,9 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         viewHolder.tvUsername.setText(tweet.user.name);
         viewHolder.tvBody.setText(tweet.body);
         viewHolder.tvTimestamp.setText(getRelativeTimeAgo(tweet.createdAt));
+        viewHolder.tvRetweets.setText((Integer.toString(tweet.retweetCount)));
+        viewHolder.tvFavorites.setText((Integer.toString(tweet.favoriteCount)));
+
 
        Glide.with(context).load(tweet.user.profileImageUrl).into(viewHolder.ivProfileImage);
     }
@@ -55,12 +60,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     //  create ViewHolder class
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivProfileImage;
         public TextView tvUsername;
         public TextView tvBody;
         public TextView tvTimestamp;
+        public TextView tvRetweets;
+        public TextView tvFavorites;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -70,6 +76,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvTimestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
+            tvRetweets = (TextView) itemView.findViewById(R.id.tvRetweets);
+            tvFavorites = (TextView) itemView.findViewById(R.id.tvFavorites);
         }
     }
 

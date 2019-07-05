@@ -39,9 +39,6 @@ public class ComposeActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         btnSend = findViewById(R.id.sendButton);
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +71,6 @@ public class ComposeActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header [] headers, String responseString, Throwable throwable){
                 super.onFailure(statusCode, headers, responseString, throwable);
             }
-
 
         });
     }
