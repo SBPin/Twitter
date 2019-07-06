@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     private List<Tweet> mTweets;
     Context context;
 
-    //  pass in Tweets array to constructor
+    //  Pass in Tweets array to constructor
     public TweetAdapter(List<Tweet> tweets){
         mTweets = tweets;
     }
 
-    //  inflate layout and cache references into ViewHolder for each row
+    //  Inflate layout and cache references into ViewHolder for each row
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,30 +39,10 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         return viewHolder;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        //  get the data according to position
-        Tweet tweet = mTweets.get(position);
-
-        //  populate the views according to this data
-        viewHolder.tvUsername.setText(tweet.user.name);
-        viewHolder.tvBody.setText(tweet.body);
-        viewHolder.tvTimestamp.setText(getRelativeTimeAgo(tweet.createdAt));
-        viewHolder.tvRetweets.setText((Integer.toString(tweet.retweetCount)));
-        viewHolder.tvFavorites.setText((Integer.toString(tweet.favoriteCount)));
-
-
-       Glide.with(context).load(tweet.user.profileImageUrl).into(viewHolder.ivProfileImage);
-    }
-
-    @Override
-    public int getItemCount() {
-        return mTweets.size();
-    }
-
-    //  create ViewHolder class
+    //  Create ViewHolder class
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivProfileImage;
+        public ImageView entityTweet;
         public TextView tvUsername;
         public TextView tvBody;
         public TextView tvTimestamp;
@@ -71,8 +52,9 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            //  perform findViewById lookups
+            //  Perform findViewById lookups
             ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
+            entityTweet = (ImageView) itemView.findViewById(R.id.entity_tweet);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvTimestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
@@ -80,6 +62,36 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvFavorites = (TextView) itemView.findViewById(R.id.tvFavorites);
         }
     }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        //  Retrieve data according to position
+        Tweet tweet = mTweets.get(position);
+
+        //  populate the views according to this data
+        viewHolder.tvUsername.setText(tweet.user.name);
+        viewHolder.tvBody.setText(tweet.body);
+        viewHolder.tvTimestamp.setText(getRelativeTimeAgo(tweet.createdAt));
+        viewHolder.tvRetweets.setText((Integer.toString(tweet.retweetCount)));
+        viewHolder.tvFavorites.setText((Integer.toString(tweet.favoriteCount)));
+
+       Glide.with(context).load(tweet.user.profileImageUrl).into(viewHolder.ivProfileImage);
+
+       if(tweet.hasEntities == true){
+           Log.i("onBindViewHolder","has entities");
+           String entityUrl = tweet.entity.loadURL;
+           viewHolder.entityTweet.setVisibility(View.VISIBLE);
+           Glide.with(context).load(entityUrl).into(viewHolder.entityTweet);
+       }else{
+           viewHolder.entityTweet.setVisibility(View.GONE);
+       }
+    }
+
+    @Override
+    public int getItemCount() {
+        return mTweets.size();
+    }
+
 
     public String getRelativeTimeAgo(String rawJsonDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";

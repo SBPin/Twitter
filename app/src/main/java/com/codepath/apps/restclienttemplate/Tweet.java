@@ -1,7 +1,11 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.os.Parcelable;
+import android.util.Log;
 
+import com.codepath.apps.restclienttemplate.models.Entity;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
@@ -18,6 +22,8 @@ public class Tweet implements Parcelable {
     public String createdAt;
     public int retweetCount;
     public Integer favoriteCount;
+    public Entity entity;
+    public boolean hasEntities;
 
     protected Tweet(android.os.Parcel in) {
         body = in.readString();
@@ -31,7 +37,46 @@ public class Tweet implements Parcelable {
         }
     }
 
-    // required for Parcelable implementation
+    // Empty constructor required for Parcelable implementation
+    public Tweet() {
+
+    }
+
+    //  Deserialize the JSON
+    public static Tweet fromJSon(JSONObject jsonObject) throws JSONException {
+        Tweet tweet = new Tweet();
+
+        //  extract values from JSON
+        tweet.body = jsonObject.getString("text");
+        tweet.uid = jsonObject.getLong("id");
+        tweet.createdAt = jsonObject.getString("created_at");
+        tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+        tweet.retweetCount = jsonObject.getInt("retweet_count");
+        tweet.favoriteCount = jsonObject.getInt("favorite_count");
+       // tweet.hasEntities = false;
+
+        JSONObject entityObject = jsonObject.getJSONObject("entities");
+
+
+        if(entityObject.has("media")){
+            JSONArray mediaEndpoint = entityObject.getJSONArray("media");
+            if(mediaEndpoint!=null && mediaEndpoint.length()!=0){
+                tweet.entity = Entity.fromJSON(jsonObject.getJSONObject("entities"));
+                tweet.hasEntities=true;
+                Log.i("Tweet","hasEntities");
+            } else {
+                tweet.hasEntities=false;
+            }
+        }
+
+        //  tweet.entity = Entity.fromJSON();
+
+
+
+        return tweet;
+    }
+
+    // Following methods all required for Parcelable implementation
     public static final Creator<Tweet> CREATOR = new Creator<Tweet>() {
         @Override
         public Tweet createFromParcel(android.os.Parcel in) {
@@ -44,33 +89,11 @@ public class Tweet implements Parcelable {
         }
     };
 
-    // required for Parcelable implementation
-    public Tweet() {
-
-    }
-
-    //  deserialize the JSON
-    public static Tweet fromJSon(JSONObject jsonObject) throws JSONException {
-        Tweet tweet = new Tweet();
-
-        //  extract values from JSON
-        tweet.body = jsonObject.getString("text");
-        tweet.uid = jsonObject.getLong("id");
-        tweet.createdAt = jsonObject.getString("created_at");
-        tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
-        tweet.retweetCount = jsonObject.getInt("retweet_count");
-        tweet.favoriteCount = jsonObject.getInt("favorite_count");
-
-        return tweet;
-    }
-
-    // required for Parcelable implementation
     @Override
     public int describeContents() {
         return 0;
     }
 
-    // required for Parcelable implementation
     @Override
     public void writeToParcel(android.os.Parcel dest, int flags) {
         dest.writeString(body);

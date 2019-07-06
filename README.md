@@ -28,7 +28,7 @@ The following **stretch** features are implemented:
 * [ ] User that wrote the original tweet is **automatically "@" replied in compose**
 * [ ] User can tap a tweet to **open a detailed tweet view**
 * [ ] User can **take favorite (and unfavorite) or reweet** actions on a tweet
-* [ ] User can **see embedded image media within a tweet** on list or detail view.
+* [x] User can **see embedded image media within a tweet** on list or detail view.
 
 The following **bonus** features are implemented:
 
@@ -58,9 +58,6 @@ Here's a walkthrough of implemented user stories:
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-
-Describe any challenges encountered while building the app.
-
 
 I initially had many difficulties with layouts and XML. However, as this project required many different TextViews, buttons, images, etc., I leanred much more about properly constructing layouts.
 

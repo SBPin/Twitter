@@ -137,8 +137,6 @@ public class TimelineActivity extends AppCompatActivity {
         // check request code and result code first
         if(requestCode == 20){
             if(resultCode == RESULT_OK){
-                //  Tweet resultTweet = (Tweet) data.getSerializableExtra("tweet");
-                //  Changed serializable to parcelable
                 Tweet resultTweet = Parcels.unwrap(getIntent().getParcelableExtra(Tweet.class.getSimpleName()));
                 tweets.add(0, resultTweet);
 
